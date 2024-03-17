@@ -1,0 +1,18 @@
+[
+  {
+    "Date": "2024-03-07T06:07:47.1627482+02:00",
+    "TemperatureC": 32,
+    "Summary": "New Random Test"
+  },
+  {
+    "Date": "2024-03-07T06:07:47.1627482+02:00",
+    "TemperatureC": 100,
+    "Summary": "Very Hot temp"
+  },
+  {
+    "Date": "2024-03-07T06:07:47.1627482+02:00",
+    "TemperatureC": 0,
+    "Summary": "Test Temp"
+  }
+
+]
