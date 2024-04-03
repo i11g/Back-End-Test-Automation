@@ -1,0 +1,18 @@
+[
+  {
+    "Date": "2024-04-03T21:09:21.5595708+03:00",
+    "TemperatureC": 45,
+    "Summary": "It is a hot day"
+  },
+  {
+    "Date": "2024-04-03T21:09:21.5595708+03:00",
+    "TemperatureC": 15,
+    "Summary": "Not a hot day"
+  },
+  {
+    "Date": "2024-04-03T21:09:21.5595708+03:00",
+    "TemperatureC": 5,
+    "Summary": "Rayni day"
+  }
+]
+
