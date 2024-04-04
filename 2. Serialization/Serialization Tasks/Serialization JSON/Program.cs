@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Newtonsoft.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Serialization_JSON
@@ -25,9 +26,18 @@ namespace Serialization_JSON
 
             //var weatherObject=JsonSerializer.Deserialize<List<WeatherForecast>>(jsonString);
 
-            //Console.WriteLine(weatherObject);
+            //Console.WriteLine(weatherObject); 
 
             
+         WeatherForecast weatherForecast = new WeatherForecast()
+            {
+                Date = DateTime.Now,
+                TemperatureC = 35,
+                Summary = "It is rainy day"
+            };
+
+            string jsonSerialize=JsonConvert.SerializeObject(weatherForecast, Formatting.Indented); 
+            Console.WriteLine(jsonSerialize);
 
 
 
