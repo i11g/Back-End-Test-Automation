@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,11 @@ namespace Serialization_JSON
 {
     public class WeatherForecast
     {
-        public DateTime Date {  get; set; }
+        [JsonProperty("Date")]
+        public DateTime DateOfCreation {  get; set; }
         public int TemperatureC { get; set; }
 
+        [JsonIgnore]
         public string Summary { get; set; }
     }
 }
