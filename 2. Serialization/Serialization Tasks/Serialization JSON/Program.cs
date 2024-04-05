@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -50,9 +51,23 @@ namespace Serialization_JSON
 
             //var peopleJson = JsonConvert.DeserializeAnonymousType(jsonObject, peopleObect); 
 
-            string jsonObject = File.ReadAllText(Path.Combine(Environment.CurrentDirectory + "/../../../Weather.json")); 
+            string jsonObject = File.ReadAllText(Path.Combine(Environment.CurrentDirectory + "/../../../Weather.json"));
 
-            var jsonWeather=JsonConvert.DeserializeObject<List<WeatherForecast>>(jsonObject);
+            var jsonWeather = JsonConvert.DeserializeObject<List<WeatherForecast>>(jsonObject);
+
+            //LinQ to Json 
+
+            string json = File.ReadAllText(Path.Combine(Environment.CurrentDirectory) + "/../../../People.json");
+
+            var person = JObject.Parse(json);
+
+            Console.WriteLine(person.ToString());
+            Console.WriteLine(person["firstName"]);
+            Console.WriteLine(person["lastName"]);
+
+            var json1 = JObject.Parse(@"{'products':[{'name':'Fruits', 'products':['apple', 'banana']}, " +
+                "'name': 'Vegetables', 'products':['cucumber']}]}");
+            var products = json1["products"].Select(t => string.Format("{0} ({1})", t["name"], string.Join(",", t["products"])));
         }
     }
 }
