@@ -38,9 +38,9 @@ namespace RestSharp_Tasks
 
             var request2 = new RestRequest("/users/softuni/repos", Method.Get);
 
-            var reponse =client2.Execute(request2);
+            var response2 =client2.Execute(request2);
 
-            var repoObject = JsonConvert.DeserializeObject<Repo>(response.Content);
+            var repoObject = JsonConvert.DeserializeObject<Repo>(response2.Content);
         }
     }
 }

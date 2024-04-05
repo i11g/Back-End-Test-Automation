@@ -13,7 +13,7 @@ namespace RestSharpTest_Project
         {
             var options = new RestClientOptions("http://api.github.com")
             {
-                Authenticator = new HttpBasicAuthenticator("i11g", "..."),
+                Authenticator = new HttpBasicAuthenticator("i11g", "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"),
                 MaxTimeout = 3000
             };
 
