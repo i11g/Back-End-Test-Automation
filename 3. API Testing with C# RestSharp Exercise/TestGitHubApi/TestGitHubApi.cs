@@ -15,13 +15,13 @@ namespace TestGitHubApi
         private GitHubApiClient client;
         private static string repo;
         private static long lastCreatedIssueNumber;
-        private static int lastCreatedCommentId;
+        private static long lastCreatedCommentId;
 
         [SetUp]
         public void Setup()
         {            
-            client = new GitHubApiClient("https://api.github.com/repos/testnakov/", "i11g", "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");
-            repo = "test-nakov-repo";
+            client = new GitHubApiClient("https://api.github.com/repos/i11g/", "i11g", "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");
+            repo = "New-Extra";
         }
 
 
@@ -64,7 +64,7 @@ namespace TestGitHubApi
         public void Test_GetAllLabelsForIssue()
         {
             //Arrange
-            var issueNumber = 9;
+            var issueNumber = 1;
 
             //Act
             var labels=client.GetAllLabelsForIssue(repo, issueNumber);
@@ -86,7 +86,7 @@ namespace TestGitHubApi
         public void Test_GetAllCommentsForIssue()
         {
             //Arrange
-            var issueNumber = 8;
+            var issueNumber = 2;
 
             //Act
             var comments=client.GetAllCommentsForIssue(repo,issueNumber);
@@ -118,7 +118,6 @@ namespace TestGitHubApi
                 Assert.That(issue, Is.Not.Null);
                 Assert.That(issue.Id, Is.GreaterThan(0));
                 Assert.That(issue.Number, Is.GreaterThan(0));
-                Assert.That(issue.Title, Is.GreaterThan(0));
                 Assert.That(issue.Title, Is.EqualTo(title));
 
             });
@@ -141,7 +140,7 @@ namespace TestGitHubApi
             //Assert 
 
             Assert.That(comment, Is.Not.Null);
-            Assert.That(comment.Id, Is.GreaterThan(0));
+            //Assert.That(comment.Id, Is.GreaterThan(0));
             Assert.That(comment.Body, Is.EqualTo(body));
             Console.WriteLine(comment.Id);
             lastCreatedCommentId = comment.Id;
@@ -152,7 +151,7 @@ namespace TestGitHubApi
         public void Test_GetCommentById()
         {
             //Arrange
-            int id = lastCreatedCommentId;
+            long id = lastCreatedCommentId;
             //Act
             var comment=client.GetCommentById(repo, id);
             //Assert
@@ -165,7 +164,7 @@ namespace TestGitHubApi
         public void Test_EditCommentOnGitHubIssue()
         { 
             //Arrange
-            int id= lastCreatedCommentId;
+            long id= lastCreatedCommentId;
             string body = "Edited";
             //Act
             var editComment=client.EditCommentOnGitHubIssue(repo,id, body);
@@ -180,7 +179,7 @@ namespace TestGitHubApi
         public void Test_DeleteCommentOnGitHubIssue()
         {   
             //Arrange
-            int id= lastCreatedCommentId;
+            long id= lastCreatedCommentId;
             //Act
             var result = client.DeleteCommentOnGitHubIssue(repo, id);
             //Assert

@@ -32,7 +32,7 @@ namespace RestSharpServices
                 :null;
         }
 
-        public Issue?  GetIssueByNumber(string repo, int issueNumber)
+        public Issue?  GetIssueByNumber(string repo, long issueNumber)
         {
             var request=new RestRequest($"{repo}/issues/{issueNumber}");
             var response = client.Execute(request, Method.Get);
@@ -45,13 +45,13 @@ namespace RestSharpServices
         {
             var request = new RestRequest($"{repo}/issues");
             request.AddJsonBody(new { title, body });
-            var response= client.Execute(request);
+            var response= client.Execute(request, Method.Post);
             return response.Content != null
                 ? JsonSerializer.Deserialize<Issue>(response.Content)
                 : null;
         }
 
-        public List<Label>?  GetAllLabelsForIssue(string repo, int issueNumber)
+        public List<Label>?  GetAllLabelsForIssue(string repo, long issueNumber)
         {
             var request = new RestRequest($"{repo}/issues/{issueNumber}/labels");
             var response = client.Execute(request, Method.Get);
@@ -62,11 +62,13 @@ namespace RestSharpServices
 
         }
 
-        public List<Comment>? GetAllCommentsForIssue(string repo, int issueNumber)
+        public List<Comment>? GetAllCommentsForIssue(string repo, long issueNumber)
         {
             var request = new RestRequest($"{repo}/issues/{issueNumber}/comment");
             var response = client.Execute(request, Method.Get);
-            return response.Content != null ? JsonSerializer.Deserialize<List<Comment>>(response.Content) : null;
+            return response.Content != null 
+                ? JsonSerializer.Deserialize<List<Comment>>(response.Content) 
+                : null;
         }
 
         public Comment? CreateCommentOnGitHubIssue(string repo, long issueNumber, string body)
@@ -79,7 +81,7 @@ namespace RestSharpServices
                 : null;
         }
 
-        public Comment?  GetCommentById (string repo, int commentId)
+        public Comment?  GetCommentById (string repo, long commentId)
         {
             var request = new RestRequest($"{repo}/issues/comments/{commentId}", Method.Get);
             var response=client.Execute(request);
@@ -88,7 +90,7 @@ namespace RestSharpServices
                 : null;
         }
 
-        public Comment?  EditCommentOnGitHubIssue( string repo, int commentId, string newBody)
+        public Comment?  EditCommentOnGitHubIssue( string repo, long commentId, string newBody)
         {
             var request = new RestRequest($"{repo}/issues/comments/{commentId}");
             request.AddJsonBody(new { body=newBody });
@@ -98,7 +100,7 @@ namespace RestSharpServices
                 : null;
         }
 
-        public bool DeleteCommentOnGitHubIssue(string repo, int commentId)
+        public bool DeleteCommentOnGitHubIssue(string repo, long commentId)
         {
             var request= new RestRequest($"{repo}/issues/comments/{commentId}");
             var response=client.Execute(request);
