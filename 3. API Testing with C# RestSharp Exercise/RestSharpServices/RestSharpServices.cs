@@ -69,7 +69,7 @@ namespace RestSharpServices
             return response.Content != null ? JsonSerializer.Deserialize<List<Comment>>(response.Content) : null;
         }
 
-        public Comment? CreateCommentOnGitHubIssue(string repo, int issueNumber, string body)
+        public Comment? CreateCommentOnGitHubIssue(string repo, long issueNumber, string body)
         {
             var request=new RestRequest($"{repo}/issues/{issueNumber}/comments");
             request.AddJsonBody(new { body });

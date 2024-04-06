@@ -14,7 +14,7 @@ namespace TestGitHubApi
     {
         private GitHubApiClient client;
         private static string repo;
-        private static int lastCreatedIssueNumber;
+        private static long lastCreatedIssueNumber;
         private static int lastCreatedCommentId;
 
         [SetUp]
@@ -107,32 +107,85 @@ namespace TestGitHubApi
         [Test, Order(5)]
         public void Test_CreateGitHubIssue()
         {
-            
+            //Arrange
+            string title = "New Issue Created";
+            string body = "The issue is sucsesfully created";
+            //Act
+            var issue = client.CreateIssue(repo, title, body);
+            //Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(issue, Is.Not.Null);
+                Assert.That(issue.Id, Is.GreaterThan(0));
+                Assert.That(issue.Number, Is.GreaterThan(0));
+                Assert.That(issue.Title, Is.GreaterThan(0));
+                Assert.That(issue.Title, Is.EqualTo(title));
+
+            });
+            Console.WriteLine(issue.Number);
+            lastCreatedIssueNumber = issue.Number;
+
+
         }
 
         [Test, Order (6)]
         public void Test_CreateCommentOnGitHubIssue()
         {
-           
+            //Arrange
+            string body = "Changed";
+            long issueNumber = lastCreatedIssueNumber;
 
-         }
+            //Act
+            var comment = client.CreateCommentOnGitHubIssue(repo, issueNumber,  body);
+
+            //Assert 
+
+            Assert.That(comment, Is.Not.Null);
+            Assert.That(comment.Id, Is.GreaterThan(0));
+            Assert.That(comment.Body, Is.EqualTo(body));
+            Console.WriteLine(comment.Id);
+            lastCreatedCommentId = comment.Id;
+
+        }
 
         [Test, Order (7)]
         public void Test_GetCommentById()
         {
-            
+            //Arrange
+            int id = lastCreatedCommentId;
+            //Act
+            var comment=client.GetCommentById(repo, id);
+            //Assert
+            Assert.That(comment, Is.Not.Null);
+            Assert.That(comment.Id, Is.EqualTo(id));
         }
 
 
         [Test, Order (8)]
         public void Test_EditCommentOnGitHubIssue()
-        {
+        { 
+            //Arrange
+            int id= lastCreatedCommentId;
+            string body = "Edited";
+            //Act
+            var editComment=client.EditCommentOnGitHubIssue(repo,id, body);
+            //Assert
+            Assert.That(editComment, Is.Not.Null);
+            Assert.That(editComment.Body, Is.EqualTo(body));
+            Assert.That(editComment.Id, Is.EqualTo(id));
            
         }
 
         [Test, Order (9)]
         public void Test_DeleteCommentOnGitHubIssue()
-        {
+        {   
+            //Arrange
+            int id= lastCreatedCommentId;
+            //Act
+            var result = client.DeleteCommentOnGitHubIssue(repo, id);
+            //Assert
+            Assert.That(result, Is.True);
+            Assert.True(result);
            
         }
 
