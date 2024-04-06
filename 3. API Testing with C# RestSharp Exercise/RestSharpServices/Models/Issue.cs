@@ -11,10 +11,10 @@ namespace RestSharpServices.Models
     {
 
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [JsonPropertyName("number")]
-        public int Number { get; set; }
+        public long Number { get; set; }
 
         [JsonPropertyName("title")]
         public string? Title { get; set; }
