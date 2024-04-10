@@ -17,17 +17,31 @@ namespace EventMi.Tests
         }
 
         [Test]
-        public void GetAllEvents_ReturnsSuccessStatusCode()
+        public async Task GetAllEvents_ReturnsSuccessStatusCode()
         {
             //Arange
 
             var request = new RestRequest("/Event/All", Method.Get);
 
             //Act
-            var response=_client.Execute(request);
+            var response=await _client.ExecuteAsync(request);
 
             //Assert
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        [Test]
+
+        public async Task Add_GetRequests_ReturnsAddView()
+        {
+            //Arrange
+            var request = new RestRequest("Event/Add", Method.Get);
+
+            //Act
+
+            var reponse = await _client.ExecuteAsync(request);
+            //Assert
+            Assert.That(reponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
     }
 }
