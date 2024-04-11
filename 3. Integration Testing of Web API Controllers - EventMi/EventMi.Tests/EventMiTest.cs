@@ -36,7 +36,7 @@ namespace EventMi.Tests
         public async Task Add_GetRequests_ReturnsAddView()
         {
             //Arrange
-            var request = new RestRequest("Event/Add", Method.Get);
+            var request = new RestRequest("/Event/Add", Method.Get);
 
             //Act
 
@@ -55,15 +55,17 @@ namespace EventMi.Tests
                 Name = "DitCome",
                 Place = "Sofia",
                 Start = new DateTime(2024, 10, 10, 10, 0, 0),
-                End = new DateTime(2024, 10, 10, 20, 0, 0)
+                End = new DateTime(2024, 10, 11, 14, 0, 0)
             };
 
-            var request = new RestRequest("/Event/All", Method.Post);
-            request.AddHeader("Content-Type", "applocation/x-www-form-urlendcoded");
+            var request = new RestRequest("/Event/Add", Method.Post);
+
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
             request.AddParameter("Name", input.Name);
             request.AddParameter("Place", input.Place);
-            request.AddParameter("Start", input.Start.ToString("MM/dd/yy/ hh:mm:ss"));
-            request.AddParameter("End",input.End.ToString("MM/dd/yy/ hh:mm:ss"));
+            request.AddParameter("Start", input.Start.ToString("MM/dd/yyyy hh:mm tt"));
+            request.AddParameter("End", input.End.ToString("MM/dd/yyyy hh:mm tt"));
 
             //Act
             var response = await _client.ExecuteAsync(request);
