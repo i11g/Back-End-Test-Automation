@@ -1,4 +1,7 @@
 using Eventmi.Core.Models.Event;
+using Eventmi.Infrastructure.Data.Contexts;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore;
 using RestSharp;
 using System.Net;
 
@@ -72,6 +75,46 @@ namespace EventMi.Tests
 
             //Assert
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.True(CheckIfEventExist(input.Name), "Event was not added to the database");
         } 
+
+        private bool CheckIfEventExist(string name)
+        {
+            var options = new DbContextOptionsBuilder<EventmiContext>
+                ().UseSqlServer("Server = DESKTOP - 6BKV1M0\\SQLEXPRESS").Options;
+
+            using var context = new EventmiContext(options);
+
+            return context.Events.Any(x=>x.Name==name);
+        }
+
+        [Test] 
+
+        public async Task Deatails_GetRequest_ShouldReturnDetailedView ()
+        {   
+            //Arrange
+            var eventId = 1;
+            var request = new RestRequest($"Event/Details/{eventId}", Method.Get);
+            //Act
+            var response=await _client.ExecuteAsync(request);
+            //Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        [Test] 
+
+        public async Task EditAction_ReturnViewForValidID()
+        {   
+            //Arrange
+            var eventId = 1;
+            var request = new RestRequest($"/Event/Edit{eventId}");
+            //Act
+            var response = await _client.ExecuteAsync(request);
+            //Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+        }
+
+        [Test]
     }
 }
