@@ -154,6 +154,41 @@ namespace EventMi.Tests
 
         [Test] 
 
-        public async Task 
+        public async Task Edit_PostRequest_ShouldEditEvent()
+        {  
+            //Arrange
+            var eventid = 1;
+            var dbEvent = GetEventById(eventid);
+
+            var input = new EventFormModel
+            {
+                Id = dbEvent.Id,
+                Name = ($"{dbEvent.Name}, Updated"),
+                Start = dbEvent.Start,
+                End = dbEvent.End,
+                Place = dbEvent.Place
+            };
+
+            var request = new RestRequest($"Event/Edit{eventid}", Method.Post);
+
+            request.AddHeader("Content-Type", "application/x-www-urlencodec");
+            request.AddParameter("Id", input.Id);
+            request.AddParameter("Name", input.Name);
+            request.AddParameter("Place", input.Place);
+            request.AddParameter("Start", input.Start.ToString("MM/dd/yyyy hh:mm tt"));
+            request.AddParameter("End", input.Start.ToString("MM/dd/yyyy hh:mm tt"));
+
+            //Act
+            var response = await _client.ExecuteAsync(request);
+            //Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+            var updatedDbEvent = GetEventById(eventid);
+            Assert.That(updatedDbEvent.Name, Is.EqualTo(input.Name));
+
+
+
+
+        }
     }
 }
