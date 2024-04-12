@@ -1,9 +1,11 @@
 using Eventmi.Core.Models.Event;
 using Eventmi.Infrastructure.Data.Contexts;
+using Eventmi.Infrastructure.Models;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using RestSharp;
 using System.Net;
+using System.Xml.Linq;
 
 namespace EventMi.Tests
 {
@@ -90,7 +92,7 @@ namespace EventMi.Tests
 
         [Test] 
 
-        public async Task Deatails_GetRequest_ShouldReturnDetailedView ()
+        public async Task Details_GetRequest_ShouldReturnDetailedView ()
         {   
             //Arrange
             var eventId = 1;
@@ -101,13 +103,25 @@ namespace EventMi.Tests
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
+        [Test]
+
+        public async Task Details_GetRequest_ShouldReturnNotFoundIfEventIDIsNotPresent()
+        {
+            //Arrange
+            var request = new RestRequest("/Event/Details", Method.Get);
+            //Act
+            var response= await _client.ExecuteAsync(request);
+            //Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));            
+        }  
+
         [Test] 
 
         public async Task EditAction_ReturnViewForValidID()
         {   
             //Arrange
             var eventId = 1;
-            var request = new RestRequest($"/Event/Edit{eventId}");
+            var request = new RestRequest($"/Event/Edit{eventId}", Method.Get);
             //Act
             var response = await _client.ExecuteAsync(request);
             //Assert
@@ -116,5 +130,30 @@ namespace EventMi.Tests
         }
 
         [Test]
+
+        public async Task EditAction_ReturnNotFoundIfNoIdisGiven()
+        {   
+            //Arrange
+            var request = new RestRequest("/Event/Edit", Method.Get);
+            //Act
+            var response = await _client.ExecuteAsync(request);
+            //Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+
+        }
+
+        private Event GetEventById (int id)
+        {
+            var options = new DbContextOptionsBuilder<EventmiContext>
+                ().UseSqlServer("Server = DESKTOP - 6BKV1M0\\SQLEXPRESS").Options;
+
+            using var context = new EventmiContext(options);
+
+            return context.Events.FirstOrDefault(x => x.Id == id);
+        }
+
+        [Test] 
+
+        public async Task 
     }
 }
