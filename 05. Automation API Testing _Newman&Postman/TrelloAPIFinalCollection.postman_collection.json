@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "2f6080d8-3dde-45ef-8738-89d679a65c6c",
+		"_postman_id": "6b8c3360-ceab-4933-a80a-fbdb5557257f",
 		"name": "TrelloAPIFinalCollection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14255838",
-		"_collection_link": "https://dark-resonance-793137.postman.co/workspace/Back-End-Automation~aefe3475-2c2a-43d6-b16e-445f241b8338/collection/14255838-2f6080d8-3dde-45ef-8738-89d679a65c6c?action=share&source=collection_link&creator=14255838"
+		"_exporter_id": "28665653"
 	},
 	"item": [
 		{
@@ -668,15 +667,15 @@
 	"variable": [
 		{
 			"key": "baseURL",
-			"value": "{{baseURL}}"
+			"value": "api.trello.com"
 		},
 		{
 			"key": "trelloKey",
-			"value": "{{trelloKey}}"
+			"value": "c2d03066884c9dd86a94585a8a7973fd"
 		},
 		{
 			"key": "trelloToken",
-			"value": "{{trelloToken}}"
+			"value": "ATTA84806a24524cc0eb81b2657d5881fd37a347735a8217306f9a47ecb837f7a340E201D678"
 		},
 		{
 			"key": "boardId",
