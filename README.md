@@ -12,11 +12,12 @@ This repository contains my solutions and projects included in Back End Test Aut
 
 ## General Information
 The course is part of SoftUni QA Automation Program and focus on:
-- Работа с файлови формати за данни: JSON, YAML and XML
-- Създаване на компонентни тестове
-- Тестване на Web API/ MVC приложения
-- Mocking на данни при тестване
-- Работа с виртуализация и контейнери
+- Практическа работа с RestSharp
+- Практическа работа с NUnit
+- Умения за тестване на API и REST услуги
+- Писане на тестинг скриптове с Postman
+- Тестване на производителността
+- Практическа работа с JMeter и K6
 
 ## Technologies Used
 - C # - version 1.0
@@ -31,7 +32,7 @@ The course is part of SoftUni QA Automation Program and focus on:
 - Many thanks to SoftUni
 
 ## Contact
-Created by [i11g](i11g.github.io/) - feel free to contact me!
+Created by [i11g](http://i11g.github.io) - feel free to contact me!
 
 ## License 
 This repo is open source and available under the MIT License. 
