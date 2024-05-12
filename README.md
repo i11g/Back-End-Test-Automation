@@ -12,23 +12,22 @@ This repository contains my solutions and projects included in Back End Test Aut
 
 ## General Information
 The course is part of SoftUni QA Automation Program and focus on:
-- associative arrays, lambda expressions, LINQ, regular expressions
-- object-oriented programming, including classes and objects, inheritance, and interfaces
-- unit testing
-- Why did you undertake it?
+- Работа с файлови формати за данни: JSON, YAML and XML
+- Създаване на компонентни тестове
+- Тестване на Web API/ MVC приложения
+- Mocking на данни при тестване
+- Работа с виртуализация и контейнери
 
 ## Technologies Used
 - C # - version 1.0
 - Java Script - version 2.0
 - N Unit - version 3.0
 - RestSharp - version
-- Postman -
-- Newman
+- Postman - version 
+- Newman - version
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on 
+
 - Many thanks to SoftUni
 
 ## Contact
