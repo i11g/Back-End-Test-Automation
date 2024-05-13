@@ -12,20 +12,18 @@ This repository contains my solutions and projects included in Back End Test Aut
 
 ## General Information
 The course is part of SoftUni QA Automation Program and focus on:
-- Практическа работа с RestSharp
-- Практическа работа с NUnit
-- Умения за тестване на API и REST услуги
-- Писане на тестинг скриптове с Postman
-- Тестване на производителността
-- Практическа работа с JMeter и K6
+- Practical training with RestSharp
+- Practical training with NUnit
+- API and REST service testing skills
+- Writing test scripts with Postman
+- Performance testing
+- Practical training with JMeter and K6 
 
 ## Technologies Used
-- C # - version 1.0
-- Java Script - version 2.0
-- N Unit - version 3.0
-- RestSharp - version
-- Postman - version 
-- Newman - version
+- C #, NUnit, RestSharp and .Net version 8.0 
+- Java Script 
+- Postman - version 9.4
+- Newman - version 6.1.2
 
 ## Acknowledgements
 
